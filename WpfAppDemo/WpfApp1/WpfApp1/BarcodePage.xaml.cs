@@ -25,7 +25,7 @@ namespace WpfApp1
     {
         DispatcherTimer timer = new DispatcherTimer();
         Context context = new Context();
-        // Creating a barcode is as simple as:
+      
         TimeSpan time { get; set; }
         TimeSpan timeClosed = new TimeSpan(0,1,0);
 
@@ -38,13 +38,10 @@ namespace WpfApp1
             timer.Interval = new TimeSpan(0, 0, 1);
 
             bitmapImage.BeginInit();
-            bitmapImage.UriSource = new Uri($"C:\\Users\\User\\source\\repos\\DemoTraning-main\\WpfApp1\\WpfApp1\\Sources\\{User.userType}.png");
+            bitmapImage.UriSource = new Uri($"C:\\Users\\mrsas\\Desktop\\LaboratoryWPF\\WpfAppDemo\\WpfApp1\\WpfApp1\\Sources\\{User.userType}.png");
             bitmapImage.EndInit();
             avatarImg.Source = bitmapImage;
-            //if (User.UserType == User.UserType.Laborant)
-            //{
-
-            //}
+           
         }
         private void timer_Tick(object sender, EventArgs e)
         {
@@ -58,20 +55,10 @@ namespace WpfApp1
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            IronBarCode.License.LicenseKey = "IRONBARCODE.MAKSIMGOLIKOV19.18683-424C4949F3-T7O6YS72AT5OHZDN-XZ2YABQJ7M4Q-WO5U2P2XYVDO-EM6ECLSFENYC-OWENHZ3LN3LW-22Z52Z-TMUBSE2473WIUA-DEPLOYMENT.TRIAL-RWEYXA.TRIAL.EXPIRES.17.FEB.2023";
-            string b =BarcodeName.Text + DateTime.Now.ToShortDateString().Replace(".", "");
-            var myBarcode = BarcodeWriter.CreateBarcode(b , BarcodeWriterEncoding.Code128);
-            myBarcode.ResizeTo(290, 120);
-            myBarcode.AddBarcodeValueTextBelowBarcode();
-            
-            myBarcode.SaveAsPdf("EAN8.pdf");
-            MessageBox.Show("Штрих код успешно сохранен");
+            NewOrderPage order = new NewOrderPage();
+            order.Show();
         }
-        private void BarcodeWriterh ()
-        {
-           
-          
-        }
+       
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             timer.Stop();
