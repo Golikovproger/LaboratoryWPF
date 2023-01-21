@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using IronBarCode;
 using IronSoftware.Drawing;
 using app;
+using Microsoft.Win32;
 
 namespace WpfApp1
 {
@@ -32,7 +33,7 @@ namespace WpfApp1
 
         private void CreateNewOrder_Click(object sender, RoutedEventArgs e)
         {
-            IronBarCode.License.LicenseKey = "IRONBARCODE.MAKSIMGOLIKOV19.18683-424C4949F3-T7O6YS72AT5OHZDN-XZ2YABQJ7M4Q-WO5U2P2XYVDO-EM6ECLSFENYC-OWENHZ3LN3LW-22Z52Z-TMUBSE2473WIUA-DEPLOYMENT.TRIAL-RWEYXA.TRIAL.EXPIRES.17.FEB.2023";
+           IronBarCode.License.LicenseKey = "IRONBARCODE.MAKSIMGOLIKOV19.18683-424C4949F3-T7O6YS72AT5OHZDN-XZ2YABQJ7M4Q-WO5U2P2XYVDO-EM6ECLSFENYC-OWENHZ3LN3LW-22Z52Z-TMUBSE2473WIUA-DEPLOYMENT.TRIAL-RWEYXA.TRIAL.EXPIRES.17.FEB.2023";
             Random rnd = new Random();
             int uniqcode = rnd.Next(100000,999999);
             string b = BarcodeName.Text + DateTime.Now.ToShortDateString().Replace(".", "") + uniqcode.ToString() ; //id+uniqcode+date
@@ -40,7 +41,13 @@ namespace WpfApp1
             myBarcode.ResizeTo(290, 120);
 
             myBarcode.AddBarcodeValueTextBelowBarcode();
-            myBarcode.SaveAsPdf("EAN8.pdf");
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter= "PDF Files | *.pdf";
+            saveFileDialog.DefaultExt = "pdf";
+            saveFileDialog.ShowDialog();
+
+            //myBarcode.SaveAsPdf("EAN8.pdf");
+            myBarcode.SaveAsPdf(saveFileDialog.FileName);
             MessageBox.Show("Штрих код успешно сохранен");
             this.Close();
         }

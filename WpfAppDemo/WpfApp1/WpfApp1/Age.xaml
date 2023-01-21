@@ -1,0 +1,21 @@
+﻿<Window x:Class="WpfApp1.Age"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1"
+        xmlns:dvc1="http://schemas.microsoft.com/winfx/2006/xaml/presentation/toolkit"
+        mc:Ignorable="d"
+        Title="Age" Height="450" Width="800">
+    <Grid>
+        <dvc1:Chart Name="GraphicChart">
+            <dvc1:Chart.Series>
+                <dvc1:LineSeries Title="График "
+                                 IndependentValueBinding="{Binding Path=Key}"
+                                 DependentValueBinding="{Binding Path=Value}"
+                                 >
+                </dvc1:LineSeries>
+            </dvc1:Chart.Series>
+        </dvc1:Chart>
+    </Grid>
+</Window>
